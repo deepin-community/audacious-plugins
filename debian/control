@@ -1,15 +1,110 @@
-Source: template-repository
-Section: unknown
+Source: audacious-plugins
+Section: sound
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Uploaders:
+ Andrej Shadura <andrewsh@debian.org>,
+ Alf Gaida <agaida@siduction.org>,
+ Mateusz Łukasik <mati75@linuxmint.pl>
+Build-Depends:
+ audacious-dev (>= 4.0.2~),
+ debhelper-compat (= 12),
+ libasound2-dev (>= 1.0) [linux-any],
+ libavcodec-dev (>= 4:0.6.1),
+ libavformat-dev (>= 4:0.6.1),
+ libavutil-dev (>= 4:0.6.1),
+ libbinio-dev (>= 1.4),
+ libbs2b-dev,
+ libcairo2-dev (>= 1.2.4),
+ libcddb2-dev (>= 1.2.1),
+ libcdio-cdda-dev (>= 0.70),
+ libcue-dev,
+ libcurl4-gnutls-dev,
+ libdbus-glib-1-dev,
+ libfaad-dev,
+ libflac-dev (>= 1.2.1),
+ libfluidsynth-dev (>= 1.0.6) [linux-any],
+ libgtk2.0-dev,
+ libjack-dev,
+ liblircclient-dev,
+ libmms-dev (>= 0.3),
+ libmodplug-dev,
+ libmp3lame-dev,
+ libmpg123-dev,
+ libneon27-gnutls-dev (>= 0.26),
+ libnotify-dev,
+ libogg-dev (>= 1.0),
+ libopenmpt-dev (>= 0.2),
+ libpulse-dev (>= 0.9) [linux-any],
+ libqt5opengl5-dev,
+ libsamplerate0-dev (>= 0.0.15),
+ libsdl2-dev,
+ libsidplayfp-dev,
+ libsndfile1-dev (>= 0.19),
+ libsndio-dev,
+ libsoxr-dev,
+ libtagc0-dev (>= 1.4),
+ libvorbis-dev (>= 1.1),
+ libwavpack-dev (>= 4.31),
+ libxcomposite-dev,
+ libxml2-dev,
+ oss4-dev [!linux-any],
+ qtbase5-dev,
+ qtmultimedia5-dev,
+Standards-Version: 4.5.0
+Homepage: https://www.audacious-media-player.org/
+Vcs-Browser: https://salsa.debian.org/multimedia-team/audacious-plugins
+Vcs-Git: https://salsa.debian.org/multimedia-team/audacious-plugins.git
 
-Package: template-repository
+Package: audacious-plugins
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: same
+Depends:
+ audacious-plugins-data (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends}
+Recommends:
+ audacious (>= 3.10.1)
+Breaks:
+ audacious (<< 3.10.1)
+Description: Base plugins for audacious
+ Audacious is a fork of beep-media-player which supports winamp skins
+ and many codecs.
+ .
+ In the default install, the following codecs are supported:
+ .
+  * MP3
+  * Ogg Vorbis
+  * AAC and AAC+
+  * FLAC
+  * Windows Media (WMA)
+  * Many module formats and much more!
+ .
+ Additionally, Audacious is extendable through plugins, and contains
+ other useful features like LIRC support.
+ .
+ This package contains the plugins for Audacious.
+  * Audio CD reading
+  * MPEG support (mp3)
+  * Ogg Vorbis support
+  * Windows Media support (WMA)
+  * AAC support
+  * FLAC support
+  * ALAC support
+  * WAVE support
+  * ALSA output
+  * OSS output
+  * Disk writer output
+  * And many more!
+
+Package: audacious-plugins-data
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Data files for Audacious plugins
+ Audacious is a fork of beep-media-player which supports winamp skins
+ and many codecs.
+ .
+ This package contains internationalized messages and skins for
+ Audacious plugins.

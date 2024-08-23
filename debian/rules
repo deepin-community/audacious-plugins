@@ -1,4 +1,32 @@
 #!/usr/bin/make -f
 
+BUILD_ARCH ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+
+ifeq ($(BUILD_ARCH),i386)
+additional_confflags := --disable-sse2
+endif
+
+ifeq ($(BUILD_ARCH),armel)
+additional_confflags := --disable-qtglspectrum
+endif
+
+ifeq ($(BUILD_ARCH),armhf)
+additional_confflags := --disable-qtglspectrum
+endif
+
+export DEB_LDFLAGS_MAINT_APPEND=-Wl,--as-needed
+export DEB_BUILD_MAINT_OPTIONS=hardening=+bindnow,-fortify
+
 %:
 	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(additional_confflags) \
+		--disable-rpath --enable-gtk
+
+override_dh_auto_clean:
+	dh_auto_clean || true
+
+
+override_dh_missing:
+	dh_missing --fail-missing
