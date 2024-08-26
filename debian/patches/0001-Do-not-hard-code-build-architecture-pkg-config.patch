@@ -1,0 +1,30 @@
+From: Helmut Grohne <helmut@subdivi.de>
+Date: Sat, 9 Jun 2018 18:11:29 +0200
+Subject: Do not hard code build architecture pkg-config
+
+Closes: #901161
+---
+ configure.ac | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 642443e..f231491 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -16,6 +16,7 @@ AC_CONFIG_HEADERS([config.h])
+ AC_CONFIG_MACRO_DIR([m4])
+ 
+ AUD_COMMON_PROGS
++PKG_PROG_PKG_CONFIG
+ 
+ BUILDSYS_INIT
+ BUILDSYS_SHARED_LIB
+@@ -676,7 +677,7 @@ fi
+ 
+ dnl *** End of all plugin checks ***
+ 
+-plugindir=`pkg-config audacious --variable=plugin_dir`
++plugindir=`$PKG_CONFIG audacious --variable=plugin_dir`
+ AC_SUBST(plugindir)
+ 
+ dnl XXX
